@@ -21,10 +21,21 @@ public class CameraScript : MonoBehaviour {
 		var y = playerObj.transform.position.y + 25;
 		//if( y < 20 )
 	//		y = 20;
-		var v = new Vector3 (playerObj.transform.position.x, y, playerObj.transform.position.z );
+		Vector3 v;
 
-		transform.position = v;
-		transform.LookAt (playerObj.transform.position);
+		if(Input.GetButton("Fire1")) 
+		{
+			v = new Vector3 (0,100,0);
+			transform.position = v;
+			Vector3 origin = new Vector3(0,0,0);
+		       	transform.LookAt(origin);
+		}
+		else
+		{
+			v = new Vector3 (playerObj.transform.position.x, y, playerObj.transform.position.z );
+			transform.position = v;
+			transform.LookAt (playerObj.transform.position);
+		}
 
 		            	//;
 

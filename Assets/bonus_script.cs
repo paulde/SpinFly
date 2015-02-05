@@ -17,8 +17,7 @@ public class bonus_script : MonoBehaviour {
 	void Update () {
 		if (renderer.enabled == true) {
 			Vector3 parentPos = transform.parent.transform.localPosition;
-			Vector3 parentScale = transform.parent.lossyScale;
-			Vector3 platform = new Vector3 (parentPos.x, parentPos.y + parentScale.y, parentPos.z);
+			Vector3 platform = new Vector3 (parentPos.x, parentPos.y, parentPos.z);
 			transform.position = platform;
 		}
 	

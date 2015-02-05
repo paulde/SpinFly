@@ -3,10 +3,14 @@ using System.Collections;
 
 public class ballscript : MonoBehaviour {
 	public Vector3 test;
+	public GUIText scoreText;
+	public int score;
 	bool hasJump;
 	// Use this for initialization
 	void Start () {
 		hasJump = true;
+		score = 0;
+		displayScore ();
 		//print ("ball start: " + rigidbody.transform.position.x + ", " + rigidbody.transform.position.y + ", " 
 		 //      + rigidbody.transform.position.z);
 		//Physics.gravity = new Vector3 (0, -.0f, 0);
@@ -41,6 +45,7 @@ public class ballscript : MonoBehaviour {
 			rigidbody.velocity = new Vector3( rigidbody.velocity.x, 8, rigidbody.velocity.z );
 			//rigidbody.AddExplosionForce(, );
 				}
+		displayScore ();
 	}
 
 	void OnCollisionEnter(Collision collisionInfo)
@@ -56,6 +61,14 @@ public class ballscript : MonoBehaviour {
 					//print ( "item!!!" );
 					//Destroy( collisionInfo.collider );
 				}
+		if (collisionInfo.collider.tag == "Bonus")
+		{
+			score++;
+		}
+		if (collisionInfo.collider.tag == "Ground")
+		{
+			score = 0;
+		}
 
 	}
 
@@ -66,6 +79,11 @@ public class ballscript : MonoBehaviour {
 			
 			//print ("has jump");
 		} 
+	}
+
+	void displayScore()
+	{
+		scoreText.text = "Score: " + score.ToString ();
 	}
 	
 }

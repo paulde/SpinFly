@@ -15,18 +15,19 @@ public class BlockBehaviorScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (frameCounter == 120 ) 
+		if (frameCounter == 60) 
 		{
 			//var x = Random.Range( -15, 15 );
 			//var z = Random.Range( -15, 15 );
 			float x = 0; 
 			float z = 0;
 
+			/*
 			bool hasItem = false;
 			if( Random.Range( 0, 5 ) == 0 )
 			{
 				hasItem = true;
-			}
+			}*/
 
 			float startDist = 30;
 			if( Random.Range( 0, 1 ) == 0 )
@@ -53,7 +54,7 @@ public class BlockBehaviorScript : MonoBehaviour {
 						gb = (GameObject)Instantiate (Resources.Load ("BlockPrefab"), posOriginal, Quaternion.identity);
 						var scale = new Vector3( Random.Range( -.5f, 3.0f ), 0, Random.Range( -.5f, 3.0f ) );
 
-						gb.transform.GetComponent<BlockScript>().SetItem(); 
+						//gb.transform.GetComponent<BlockScript>().SetItem(); 
 						gb.transform.localScale += scale;
 						
 				//		gb.rigidbody.velocity = vel;

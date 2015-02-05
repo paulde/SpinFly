@@ -54,7 +54,7 @@ public class MiddleBlockScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		float riseSpeed = 1;
+		/*(float riseSpeed = 1;
 		
 			
 			var v = new Vector3( 0, -(float)1.0 / 60 * riseSpeed, 0 );
@@ -72,7 +72,7 @@ public class MiddleBlockScript : MonoBehaviour {
 		transform.Translate (vel / 60 * speed );
 		
 		if( item != null )
-			item.transform.Translate (vel / 60 * speed);
+			item.transform.Translate (vel / 60 * speed);*/
 		
 		
 	}
