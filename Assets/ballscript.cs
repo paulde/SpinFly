@@ -13,7 +13,7 @@ public class ballscript : MonoBehaviour {
 		displayScore ();
 		//print ("ball start: " + rigidbody.transform.position.x + ", " + rigidbody.transform.position.y + ", " 
 		 //      + rigidbody.transform.position.z);
-		//Physics.gravity = new Vector3 (0, -.0f, 0);
+		Physics.gravity = new Vector3 (0, -15, 0);
 	}
 	
 	// Update is called once per frame
@@ -21,7 +21,7 @@ public class ballscript : MonoBehaviour {
 	{
 		//print ("ball vel: " + rigidbody.transform.position.x + ", " + rigidbody.transform.position.y + ", " 
 						//+ rigidbody.transform.position.z);
-		float forceFactor = 10 * rigidbody.mass;
+		float forceFactor = 13 * rigidbody.mass;
 		if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey( KeyCode.W ) ) {
 			rigidbody.AddForce( 0, 0, forceFactor );
 		}
@@ -42,7 +42,7 @@ public class ballscript : MonoBehaviour {
 
 		if (Input.GetKey(KeyCode.Space) && hasJump) {
 			hasJump = false;
-			rigidbody.velocity = new Vector3( rigidbody.velocity.x, 8, rigidbody.velocity.z );
+			rigidbody.velocity = new Vector3( rigidbody.velocity.x, 9, rigidbody.velocity.z );
 			//rigidbody.AddExplosionForce(, );
 				}
 		displayScore ();
