@@ -73,6 +73,8 @@ public class MiddleBlockScript : MonoBehaviour {
 		
 		if( item != null )
 			item.transform.Translate (vel / 60 * speed);*/
+
+		item.transform.Translate (vel);
 		
 		
 	}
