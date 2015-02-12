@@ -78,7 +78,7 @@ public class BlockScript : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		float f = (transform.position.y) / 4;
-		renderer.material.OutlineColor = new Color (f, f, f);
+		renderer.material.color = new Color (f, f, f);
 		//var bone = this.transform.Find("Bonus");
 		//Vector3 d = new Vector3 (0,0,0);
 		//transform.particleSystem.enableEmission = true;
