@@ -9,6 +9,8 @@ public class ballscript : MonoBehaviour {
 	public float time;
 	public bool goalMet;
 	public int goal;
+	public GameObject player;
+	private ballscript otherScript;
 	// Use this for initialization
 	void Start () {
 		hasJump = true;
@@ -25,6 +27,10 @@ public class ballscript : MonoBehaviour {
 		//test ();
 		//testfunction ();
 		GameObject.Find ("Fader").GetComponent<Fade> ().FadeIn ();
+
+		player = GameObject.Find("Player");
+		otherScript = player.GetComponent<ballscript> ();
+		//otherScript = player.GetComponent<ballscript> ();
 
 		//yield return new WaitForSeconds (fadeTime);
 	}
@@ -95,10 +101,10 @@ public class ballscript : MonoBehaviour {
 					//print ( "item!!!" );
 					//Destroy( collisionInfo.collider );
 				}
-		if (collisionInfo.collider.tag == "Bonus")
-		{
-			score++;
-		}
+		//if (collisionInfo.collider.tag == "Bonus")
+		//{
+			//score++;
+		//}
 		if (collisionInfo.collider.tag == "Ground")
 		{
 			score = 0;

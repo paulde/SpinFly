@@ -2,10 +2,14 @@
 using System.Collections;
 
 public class bonus_script : MonoBehaviour {
+	public GameObject parent;
+	private BlockScript otherScript;
 
 	// Use this for initialization
 	void Start () {
-		if(transform.parent.gameObject.tag != "Bonus")
+		parent = transform.parent.gameObject;
+		otherScript = parent.GetComponent<BlockScript> ();
+		if(!otherScript.isBonus)
 		{
 			renderer.enabled = false;
 		}
