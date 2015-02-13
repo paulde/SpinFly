@@ -46,6 +46,13 @@ public class ballscript : MonoBehaviour {
 			//rigidbody.AddExplosionForce(, );
 				}
 		displayScore ();
+
+		float f = (transform.position.y) / 25;
+		//renderer.material.color = new Color (f, f, f);
+		
+		//renderer.material.shader = Shader.Find ("SciFi_Props-Pack03-diffuse");
+		renderer.material.SetColor ("_OutlineColor", new Color (f, f, f));
+
 	}
 
 	void OnCollisionEnter(Collision collisionInfo)
