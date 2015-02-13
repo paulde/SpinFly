@@ -4,19 +4,31 @@ using System.Collections;
 public class MiddleBlockScript : MonoBehaviour {
 	
 	Vector3 vel;
-	float speed;
+	Vector3 speed;
 	GameObject item;
 	bool playerOnTop;
+	public GameObject player;
+	private ballscript otherScript;
+	Vector3 up;
+	Vector3 down;
 	// Use this for initialization
 	void Start () {
-		vel = new Vector3( 0, -1, 0 );
-		vel.y = 0;
+		vel = new Vector3( 0, 0, 0 );
+		//vel.y = 0;
+		speed = new Vector3 (0, 1, 0);
+		speed.Normalize();
 		vel.Normalize ();
-		speed = Random.Range( 2, 6 );
+		//Debug.Log (otherScript.score);
+		player = GameObject.Find("Player");
+		otherScript = player.GetComponent<ballscript> ();
+		up = new Vector3 (0, 50, 0);
+		Vector3 startPos = new Vector3 (0, -5, 0);
+		transform.position = startPos;
+		//speed = Random.Range( 2, 6 );
 	}
 	
 	//public void Create( Vector3 vel, 
-	
+
 	void OnCollisionEnter(Collision collisionInfo)
 	{
 		
@@ -74,7 +86,15 @@ public class MiddleBlockScript : MonoBehaviour {
 		if( item != null )
 			item.transform.Translate (vel / 60 * speed);*/
 
-		item.transform.Translate (vel);
+		if (otherScript.goalMet && transform.position.y < 15) {
+			//vel += speed;
+			//Vector3  hi = new Vector3(0,50,0);
+			transform.Translate((up*Time.fixedDeltaTime) /(60)); 
+		} else if (!otherScript.goalMet && transform.position.y > -30) {
+			vel -= speed;
+			transform.Translate ((vel * Time.fixedDeltaTime) / (60 * 10));
+		}
+		//transofrm.Translate (vel);
 		
 		
 	}

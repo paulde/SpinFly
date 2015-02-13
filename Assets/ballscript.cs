@@ -6,6 +6,9 @@ public class ballscript : MonoBehaviour {
 	public GUIText scoreText;
 	public int score;
 	bool hasJump;
+	public float time;
+	public bool goalMet;
+	public int goal;
 	// Use this for initialization
 	void Start () {
 		hasJump = true;
@@ -13,7 +16,17 @@ public class ballscript : MonoBehaviour {
 		displayScore ();
 		//print ("ball start: " + rigidbody.transform.position.x + ", " + rigidbody.transform.position.y + ", " 
 		 //      + rigidbody.transform.position.z);
+		time = 60;
 		Physics.gravity = new Vector3 (0, -15, 0);
+		goalMet = false;
+		goal = 5;
+		//GameObject.Find ("Fader").GetComponent<Fade> ().FadetoBlack ();
+		//yield return new WaitForSeconds (fadeTime);
+		//test ();
+		//testfunction ();
+		GameObject.Find ("Fader").GetComponent<Fade> ().FadeIn ();
+
+		//yield return new WaitForSeconds (fadeTime);
 	}
 	
 	// Update is called once per frame
@@ -53,6 +66,20 @@ public class ballscript : MonoBehaviour {
 		//renderer.material.shader = Shader.Find ("SciFi_Props-Pack03-diffuse");
 		renderer.material.SetColor ("_OutlineColor", new Color (f, f, f));
 
+		time -= Time.fixedDeltaTime;
+		if (time <= 0) {
+			Application.LoadLevel (Application.loadedLevel);
+		}
+
+		if (score >= goal || Input.GetKey(KeyCode.H)) {
+			goalMet = true;
+		}
+
+		if (transform.position.y >= 44) {
+			GameObject.Find ("Fader").GetComponent<Fade> ().FadeOut ();
+			Application.LoadLevel (Application.loadedLevel);
+		}
+
 	}
 
 	void OnCollisionEnter(Collision collisionInfo)
@@ -90,7 +117,14 @@ public class ballscript : MonoBehaviour {
 
 	void displayScore()
 	{
-		scoreText.text = "Score: " + score.ToString ();
+		scoreText.text = "Time: " + time.ToString("0") + "\nGoal: " + score.ToString () + "/" + goal;
 	}
+	/*IEnumerator testfunction() 
+	{
+		float fadeTime = GameObject.Find ("Fader").GetComponent<Fade> ().BeginFade (-1);
+		yield return new WaitForSeconds(fadeTime);
+	}*/
+
+
 	
 }
