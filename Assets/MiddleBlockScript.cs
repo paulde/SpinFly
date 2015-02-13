@@ -13,14 +13,14 @@ public class MiddleBlockScript : MonoBehaviour {
 	Vector3 down;
 	// Use this for initialization
 	void Start () {
-		vel = new Vector3( 0, 0, 0 );
+		vel = new Vector3( 0, -50, 0 );
 		//vel.y = 0;
 		speed = new Vector3 (0, 1, 0);
 		speed.Normalize();
 		vel.Normalize ();
-		//Debug.Log (otherScript.score);
 		player = GameObject.Find("Player");
 		otherScript = player.GetComponent<ballscript> ();
+
 		up = new Vector3 (0, 50, 0);
 		Vector3 startPos = new Vector3 (0, -5, 0);
 		transform.position = startPos;
