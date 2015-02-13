@@ -13,12 +13,12 @@ public class BlockScript : MonoBehaviour {
 		//vel = new Vector3( 0, 0, 0 );
 		//vel = -transform.position;
 
-		speed = Random.Range( 1, 5 );
+		speed = Random.Range( 2, 5 );
 
 
 
 		//Determine if block is a bonus block
-		int randNum = Random.Range (1, 5);
+		int randNum = Random.Range (1, 3);
 		if (randNum == 1) 
 		{
 			isBonus = true;

@@ -21,7 +21,7 @@ public class ballscript : MonoBehaviour {
 		time = 60;
 		Physics.gravity = new Vector3 (0, -15, 0);
 		goalMet = false;
-		goal = 5;
+		goal = 1;
 		//GameObject.Find ("Fader").GetComponent<Fade> ().FadetoBlack ();
 		//yield return new WaitForSeconds (fadeTime);
 		//test ();
@@ -40,7 +40,7 @@ public class ballscript : MonoBehaviour {
 	{
 		//print ("ball vel: " + rigidbody.transform.position.x + ", " + rigidbody.transform.position.y + ", " 
 						//+ rigidbody.transform.position.z);
-		float forceFactor = 13 * rigidbody.mass;
+		float forceFactor = 15 * rigidbody.mass;
 		if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey( KeyCode.W ) ) {
 			rigidbody.AddForce( 0, 0, forceFactor );
 		}
@@ -71,8 +71,9 @@ public class ballscript : MonoBehaviour {
 		
 		//renderer.material.shader = Shader.Find ("SciFi_Props-Pack03-diffuse");
 		renderer.material.SetColor ("_OutlineColor", new Color (f, f, f));
-
-		time -= Time.fixedDeltaTime;
+		if (goalMet != true) {
+						time -= Time.fixedDeltaTime;
+				}
 		if (time <= 0) {
 			Application.LoadLevel (Application.loadedLevel);
 		}
