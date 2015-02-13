@@ -7,16 +7,26 @@ public class BlockScript : MonoBehaviour {
 	float speed;
 	// Use this for initialization
 	void Start () {
-		vel = -transform.position;
-		vel.Normalize ();
+		//vel = new Vector3( 0, 0, 0 );
+		//vel = -transform.position;
+
 		speed = Random.Range( 1, 5 );
+
+
 
 		//Determine if block is a bonus block
 		int randNum = Random.Range (1, 5);
 		if (randNum == 1) 
 		{
-			transform.gameObject.tag= "Bonus";
+		//	transform.gameObject.tag= "Bonus";
 		}
+	}
+
+	public void SetVelocity( Vector3 v )
+	{
+		vel = v;
+		//vel = new Vector3( Random.Range( -1.0f, 1.0f ), 0, Random.Range( -1.0f, 1.0f ) );
+		vel.Normalize ();
 	}
 
 	//public void Create( Vector3 vel, 
@@ -54,7 +64,7 @@ public class BlockScript : MonoBehaviour {
 	{
 		if (collisionInfo.collider.tag == "Player")
 		{
-			transform.gameObject.tag = "Block";
+			//transform.gameObject.tag = "Block";
 		}
 		if (collisionInfo.collider.tag == "Player" && collisionInfo.contacts[0].normal.y < -.9 ) {
 			if( transform.position.y <= 4 )
