@@ -3,13 +3,30 @@ using System.Collections;
 
 public class ballscript : MonoBehaviour {
 	public Vector3 test;
+	public GUIText scoreText;
+	public int score;
 	bool hasJump;
+	public float time;
+	public bool goalMet;
+	public int goal;
 	// Use this for initialization
 	void Start () {
 		hasJump = true;
+		score = 0;
+		displayScore ();
 		//print ("ball start: " + rigidbody.transform.position.x + ", " + rigidbody.transform.position.y + ", " 
 		 //      + rigidbody.transform.position.z);
-		//Physics.gravity = new Vector3 (0, -.0f, 0);
+		time = 60;
+		Physics.gravity = new Vector3 (0, -15, 0);
+		goalMet = false;
+		goal = 5;
+		//GameObject.Find ("Fader").GetComponent<Fade> ().FadetoBlack ();
+		//yield return new WaitForSeconds (fadeTime);
+		//test ();
+		//testfunction ();
+		GameObject.Find ("Fader").GetComponent<Fade> ().FadeIn ();
+
+		//yield return new WaitForSeconds (fadeTime);
 	}
 	
 	// Update is called once per frame
@@ -17,7 +34,7 @@ public class ballscript : MonoBehaviour {
 	{
 		//print ("ball vel: " + rigidbody.transform.position.x + ", " + rigidbody.transform.position.y + ", " 
 						//+ rigidbody.transform.position.z);
-		float forceFactor = 10 * rigidbody.mass;
+		float forceFactor = 13 * rigidbody.mass;
 		if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey( KeyCode.W ) ) {
 			rigidbody.AddForce( 0, 0, forceFactor );
 		}
@@ -38,9 +55,31 @@ public class ballscript : MonoBehaviour {
 
 		if (Input.GetKey(KeyCode.Space) && hasJump) {
 			hasJump = false;
-			rigidbody.velocity = new Vector3( rigidbody.velocity.x, 8, rigidbody.velocity.z );
+			rigidbody.velocity = new Vector3( rigidbody.velocity.x, 9, rigidbody.velocity.z );
 			//rigidbody.AddExplosionForce(, );
 				}
+		displayScore ();
+
+		float f = (transform.position.y) / 25;
+		//renderer.material.color = new Color (f, f, f);
+		
+		//renderer.material.shader = Shader.Find ("SciFi_Props-Pack03-diffuse");
+		renderer.material.SetColor ("_OutlineColor", new Color (f, f, f));
+
+		time -= Time.fixedDeltaTime;
+		if (time <= 0) {
+			Application.LoadLevel (Application.loadedLevel);
+		}
+
+		if (score >= goal || Input.GetKey(KeyCode.H)) {
+			goalMet = true;
+		}
+
+		if (transform.position.y >= 44) {
+			GameObject.Find ("Fader").GetComponent<Fade> ().FadeOut ();
+			Application.LoadLevel (Application.loadedLevel);
+		}
+
 	}
 
 	void OnCollisionEnter(Collision collisionInfo)
@@ -56,6 +95,14 @@ public class ballscript : MonoBehaviour {
 					//print ( "item!!!" );
 					//Destroy( collisionInfo.collider );
 				}
+		if (collisionInfo.collider.tag == "Bonus")
+		{
+			score++;
+		}
+		if (collisionInfo.collider.tag == "Ground")
+		{
+			score = 0;
+		}
 
 	}
 
@@ -67,5 +114,17 @@ public class ballscript : MonoBehaviour {
 			//print ("has jump");
 		} 
 	}
+
+	void displayScore()
+	{
+		scoreText.text = "Time: " + time.ToString("0") + "\nGoal: " + score.ToString () + "/" + goal;
+	}
+	/*IEnumerator testfunction() 
+	{
+		float fadeTime = GameObject.Find ("Fader").GetComponent<Fade> ().BeginFade (-1);
+		yield return new WaitForSeconds(fadeTime);
+	}*/
+
+
 	
 }

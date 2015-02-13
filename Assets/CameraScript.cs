@@ -18,16 +18,38 @@ public class CameraScript : MonoBehaviour {
 		 //                    + playerObj.rigidbody.velocity.z );
 
 	//	var v = new Vector3 (playerObj.transform.position.x, transform.position.y, playerObj.transform.position.z - 5 );
-		var y = playerObj.transform.position.y + 25;
+		var y = playerObj.transform.position.y + 13;
 		//if( y < 20 )
 	//		y = 20;
-		var v = new Vector3 (playerObj.transform.position.x, y, playerObj.transform.position.z );
+		Vector3 v;
 
-		transform.position = v;
-		transform.LookAt (playerObj.transform.position);
+		if(Input.GetButton("Fire1")) 
+		{
+			v = new Vector3 (0,80,0);
+			transform.position = v;
+			Vector3 origin = new Vector3(0,0,0);
+		       	transform.LookAt(origin);
+		}
+		else
+		{
+			v = new Vector3 (playerObj.transform.position.x, 30 + ((y-20)/4), playerObj.transform.position.z -5 );
+			transform.position = v;
+			transform.LookAt (playerObj.transform.position);
+		}
 
 		            	//;
 
 			//transform.position.z = ;
+	}
+
+	private bool revertFogState = true;
+	void OnPreRender() {
+		if (Input.GetButton ("Fire1")) {
+			revertFogState = RenderSettings.fog;
+			RenderSettings.fog = false;
+		}
+	}
+	void OnPostRender() {
+		RenderSettings.fog = revertFogState;
 	}
 }
