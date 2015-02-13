@@ -10,9 +10,12 @@ public class BlockScript : MonoBehaviour {
 	private ballscript otherScript;
 	// Use this for initialization
 	void Start () {
-		vel = -transform.position;
-		vel.Normalize ();
+		//vel = new Vector3( 0, 0, 0 );
+		//vel = -transform.position;
+
 		speed = Random.Range( 1, 5 );
+
+
 
 		//Determine if block is a bonus block
 		int randNum = Random.Range (1, 5);
@@ -24,6 +27,13 @@ public class BlockScript : MonoBehaviour {
 		player = GameObject.Find("Player");
 		otherScript = player.GetComponent<ballscript> ();
 
+	}
+
+	public void SetVelocity( Vector3 v )
+	{
+		vel = v;
+		//vel = new Vector3( Random.Range( -1.0f, 1.0f ), 0, Random.Range( -1.0f, 1.0f ) );
+		vel.Normalize ();
 	}
 
 	//public void Create( Vector3 vel, 
