@@ -74,11 +74,18 @@ public class BlockScript : MonoBehaviour {
 		}
 		//print(gameObject.name + " and " + collisionInfo.collider.name + " are still colliding");
 	}
+
+
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 		float f = (transform.position.y) / 4;
-		renderer.material.color = new Color (f, f, f);
+		//renderer.material.color = new Color (f, f, f);
+
+		//renderer.material.shader = Shader.Find ("SciFi_Props-Pack03-diffuse");
+		renderer.material.SetColor ("_OutlineColor", new Color (f, f, f));
+
+
 		//var bone = this.transform.Find("Bonus");
 		//Vector3 d = new Vector3 (0,0,0);
 		//transform.particleSystem.enableEmission = true;

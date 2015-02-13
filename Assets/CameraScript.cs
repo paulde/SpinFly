@@ -41,4 +41,15 @@ public class CameraScript : MonoBehaviour {
 
 			//transform.position.z = ;
 	}
+
+	private bool revertFogState = true;
+	void OnPreRender() {
+		if (Input.GetButton ("Fire1")) {
+			revertFogState = RenderSettings.fog;
+			RenderSettings.fog = false;
+		}
+	}
+	void OnPostRender() {
+		RenderSettings.fog = revertFogState;
+	}
 }
