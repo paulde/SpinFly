@@ -32,8 +32,8 @@ public class CameraScript : MonoBehaviour {
 		}
 		else
 		{
-			//v = new Vector3 (playerObj.transform.position.x, 35 + ((y-20)/4), playerObj.transform.position.z -5 );
-			v = new Vector3 (playerObj.transform.position.x,  y, playerObj.transform.position.z -5 );
+			v = new Vector3 (playerObj.transform.position.x, 33 + ((y-20)/4), playerObj.transform.position.z -5 );
+			//v = new Vector3 (playerObj.transform.position.x,  y, playerObj.transform.position.z -5 );
 			transform.position = v;
 			transform.LookAt (playerObj.transform.position);
 		}
