@@ -8,7 +8,7 @@ public class game_menu_script : MonoBehaviour {
 		GUI.skin = gSkin;
 
 		float xCenter = (Screen.width / 2) - (Screen.width * 0.08f);
-		float yCenter = (Screen.height / 2) - (Screen.height * 0.2f);
+		float yCenter = (Screen.height / 2) - (Screen.height * 0.1f);
 		float button_width = Screen.width * 0.2f;
 		float button_height = Screen.height * 0.1f;
 		float yOffset = Screen.height * 0.15f;
