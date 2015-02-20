@@ -89,13 +89,15 @@ public class ballscript : MonoBehaviour {
 
 	}
 
-	void OnCollisionEnter(Collision collisionInfo)
+	IEnumerator OnCollisionEnter(Collision collisionInfo)
 	{
 		if (collisionInfo.collider.tag == "Block") {//&& collisionInfo.contacts [0].normal.y > .99) {
 						hasJump = true;
 			
 						//print ("has jump");
 				} else if (collisionInfo.collider.tag == "Ground") {
+						float fadeTime = GameObject.Find ("Player").GetComponent<Fade>().BeginFade(1);
+						yield return new WaitForSeconds(fadeTime);
 						Application.LoadLevel (Application.loadedLevel);
 						print ("Resetting");
 				} else if (collisionInfo.collider.tag == "Item") {
