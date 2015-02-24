@@ -11,6 +11,7 @@ public class ballscript : MonoBehaviour {
 	public int goal;
 	public GameObject player;
 	private ballscript otherScript;
+	private int controlType;
 	// Use this for initialization
 	void Start () {
 		hasJump = true;
@@ -33,6 +34,7 @@ public class ballscript : MonoBehaviour {
 		//otherScript = player.GetComponent<ballscript> ();
 
 		//yield return new WaitForSeconds (fadeTime);
+		controlType = 1;
 	}
 	
 	// Update is called once per frame
@@ -40,21 +42,44 @@ public class ballscript : MonoBehaviour {
 	{
 		//print ("ball vel: " + rigidbody.transform.position.x + ", " + rigidbody.transform.position.y + ", " 
 						//+ rigidbody.transform.position.z);
-		float forceFactor = 15 * rigidbody.mass;
-		if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey( KeyCode.W ) ) {
-			rigidbody.AddForce( 0, 0, forceFactor );
+
+		if (Input.GetKey (KeyCode.Alpha1)) {
+			controlType = 1;
+		} else if (Input.GetKey (KeyCode.Alpha2)) {
+			controlType = 2;
+		} else if (Input.GetKey (KeyCode.Alpha3)) {
+			controlType = 3;
 		}
 
-		if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey( KeyCode.S) ) {
-			rigidbody.AddForce( 0, 0, -forceFactor );
-		}
 
-		if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey( KeyCode.A) ) {
-			rigidbody.AddForce( -forceFactor, 0, 0 );
-		}
-
-		if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey( KeyCode.D) ) {
-			rigidbody.AddForce( forceFactor, 0, 0 );
+		if (controlType == 1) { // Original controls
+			float forceFactor = 15 * rigidbody.mass;
+			if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W)) {
+				rigidbody.AddForce (0, 0, forceFactor);
+			}
+			if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S)) {
+				rigidbody.AddForce (0, 0, -forceFactor);
+			}
+			if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
+				rigidbody.AddForce (-forceFactor, 0, 0);
+			}
+			if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
+				rigidbody.AddForce (forceFactor, 0, 0);
+			}
+		} else if(controlType == 2) { // Version 2 Control
+			if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W)) {
+				transform.Translate (Vector3.forward * 7f * Time.fixedDeltaTime, transform.parent);
+			}
+			if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S)) {
+				transform.Translate (Vector3.back * 7f * Time.fixedDeltaTime, transform.parent);
+			}
+			if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
+				transform.Translate (Vector3.left * 7f * Time.fixedDeltaTime, transform.parent);
+			}
+			if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
+				transform.Translate (Vector3.right * 7f * Time.fixedDeltaTime, transform.parent);
+				//transform.Rotate (0, 0, 5);
+			}
 		}
 
 
