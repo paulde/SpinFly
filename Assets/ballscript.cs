@@ -22,7 +22,7 @@ public class ballscript : MonoBehaviour {
 		time = 60;
 		Physics.gravity = new Vector3 (0, -15, 0);
 		goalMet = false;
-		goal = 1;
+		goal = 3;
 		//GameObject.Find ("Fader").GetComponent<Fade> ().FadetoBlack ();
 		//yield return new WaitForSeconds (fadeTime);
 		//test ();

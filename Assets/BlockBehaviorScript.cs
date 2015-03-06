@@ -25,7 +25,7 @@ public class BlockBehaviorScript : MonoBehaviour {
 			
 			
 			
-			var posOriginal = new Vector3 ( x, Random.Range( 8.0f, 9.0f ) , z);
+			var posOriginal = new Vector3 ( x, Random.Range( 3.0f, 9.0f ) , z);
 			
 			
 				gb = (GameObject)Instantiate (Resources.Load ("BlockPrefab"), posOriginal, Quaternion.identity);
@@ -95,7 +95,7 @@ public class BlockBehaviorScript : MonoBehaviour {
 			var angle = Random.Range (0, Mathf.PI * 2 - .01f);
 			var start = 30;
 			//var startVel = .01f;
-			var posOriginal = new Vector3 (Mathf.Cos (angle) * start, Random.Range( 9.0f, 8.0f ) , Mathf.Sin (angle) * start);
+			var posOriginal = new Vector3 (Mathf.Cos (angle) * start, Random.Range( 3.0f, 9.0f ) , Mathf.Sin (angle) * start);
 			// new Vector3( x, 0, z );
 			//var vel = new Vector3 (-Mathf.Cos (angle) * start, 0, -Mathf.Sin (angle) * start);
 			//pos.x *= 10;
