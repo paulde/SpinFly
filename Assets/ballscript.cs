@@ -20,7 +20,7 @@ public class ballscript : MonoBehaviour {
 		//print ("ball start: " + rigidbody.transform.position.x + ", " + rigidbody.transform.position.y + ", " 
 		 //      + rigidbody.transform.position.z);
 		time = 60;
-		Physics.gravity = new Vector3 (0, -15, 0);
+		Physics.gravity = new Vector3 (0, -20, 0);
 		goalMet = false;
 		goal = 3;
 		//GameObject.Find ("Fader").GetComponent<Fade> ().FadetoBlack ();
@@ -66,20 +66,32 @@ public class ballscript : MonoBehaviour {
 			if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
 				rigidbody.AddForce (forceFactor, 0, 0);
 			}
+
+			if (Input.GetKey(KeyCode.Space) && hasJump) {
+			hasJump = false;
+			rigidbody.velocity = new Vector3( rigidbody.velocity.x, 7, rigidbody.velocity.z );
+			//rigidbody.AddExplosionForce(, );
+				}
 		} else if(controlType == 2) { // Version 2 Control
 			if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W)) {
-				transform.Translate (Vector3.forward * 7f * Time.fixedDeltaTime, transform.parent);
+				transform.Translate (Vector3.forward * 20f * Time.fixedDeltaTime, transform.parent);
 			}
 			if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S)) {
-				transform.Translate (Vector3.back * 7f * Time.fixedDeltaTime, transform.parent);
+				transform.Translate (Vector3.back * 20f * Time.fixedDeltaTime, transform.parent);
 			}
 			if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
-				transform.Translate (Vector3.left * 7f * Time.fixedDeltaTime, transform.parent);
+				transform.Translate (Vector3.left * 20f * Time.fixedDeltaTime, transform.parent);
 			}
 			if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
-				transform.Translate (Vector3.right * 7f * Time.fixedDeltaTime, transform.parent);
+				transform.Translate (Vector3.right * 20f * Time.fixedDeltaTime, transform.parent);
 				//transform.Rotate (0, 0, 5);
 			}
+
+			if (Input.GetKey(KeyCode.Space) && hasJump) {
+			hasJump = false;
+			rigidbody.velocity = new Vector3( rigidbody.velocity.x, 7, rigidbody.velocity.z );
+			//rigidbody.AddExplosionForce(, );
+				}
 		}
 		else if(controlType == 3) { // Version 2 Control
 			float forceFactor = 25 * rigidbody.mass;
@@ -96,11 +108,21 @@ public class ballscript : MonoBehaviour {
 				rigidbody.AddForce (forceFactor, 0, 0);
 			}
 
-			float max_speed = 10;
+//<<<<<<< Updated upstream
+			float max_speed = 12;
+//=======
+			if (Input.GetKey(KeyCode.Space) && hasJump) {
+			hasJump = false;
+			rigidbody.velocity = new Vector3( rigidbody.velocity.x, 20, rigidbody.velocity.z );
+			//rigidbody.AddExplosionForce(, );
+				}
+
+
+//>>>>>>> Stashed changes
 			if(rigidbody.velocity.magnitude > max_speed)
-         {
+         	{
                 rigidbody.velocity = rigidbody.velocity.normalized * max_speed;
-         }
+         	}
 		}
 
 		if (Input.GetKey (KeyCode.U)) {
@@ -110,11 +132,6 @@ public class ballscript : MonoBehaviour {
 		
 		
 
-		if (Input.GetKey(KeyCode.Space) && hasJump) {
-			hasJump = false;
-			rigidbody.velocity = new Vector3( rigidbody.velocity.x, 9, rigidbody.velocity.z );
-			//rigidbody.AddExplosionForce(, );
-				}
 		displayScore ();
 
 		float f = (transform.position.y) / 25;

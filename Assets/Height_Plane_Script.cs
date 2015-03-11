@@ -41,7 +41,7 @@ public class Height_Plane_Script : MonoBehaviour {
         	{
 	        	GameObject highlight = Instantiate(Resources.Load("Block_Highlight", typeof(GameObject))) as GameObject;
 	       		highlight.transform.position = new Vector3(go.transform.position.x, player.transform.position.y+ 0.05f, go.transform.position.z);
-	       		highlight.transform.localScale = new Vector3( go.transform.lossyScale.x*0.1f + 0.03f, 0.1f, go.transform.lossyScale.z*0.1f+ 0.03f);
+	       		highlight.transform.localScale = new Vector3( go.transform.lossyScale.x * 0.004588511469f * 0.2f + 0.03f, 0.1f, go.transform.lossyScale.z * 0.004588511469f  * 0.2f+ 0.05f);
 
 	       		//add change ot color to the detection squares
 	       		float height_color = Mathf.Abs(player.transform.position.y - (go.transform.position.y + 15f));

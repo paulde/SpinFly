@@ -28,7 +28,7 @@ public class BlockBehaviorScript : MonoBehaviour {
 			var posOriginal = new Vector3 ( x, Random.Range( 3.0f, 9.0f ) , z);
 			
 			
-				gb = (GameObject)Instantiate (Resources.Load ("BlockPrefab"), posOriginal, Quaternion.identity);
+				gb = (GameObject)Instantiate (Resources.Load ("pillar_prefab"), posOriginal, Quaternion.identity);
 				((BlockScript)gb.GetComponent( "BlockScript" )).SetVelocity( new Vector3( Random.Range( -1.0f, 1.0f ), 0, Random.Range( -1.0f, 1.0f ) ) );
 			var scale = new Vector3( Random.Range( -.5f, 3.0f ), 0, Random.Range( -.5f, 3.0f ) );
 			
@@ -102,7 +102,7 @@ public class BlockBehaviorScript : MonoBehaviour {
 			//pox.y *= 10;
 			
 			var rot = Quaternion.Euler( 0, Random.Range( 0.0f, 90.0f ), 0 );
-			gb = (GameObject)Instantiate (Resources.Load ("BlockPrefab"), posOriginal, Quaternion.identity);
+			gb = (GameObject)Instantiate (Resources.Load ("pillar_prefab"), posOriginal, Quaternion.identity);
 			Vector3 blockVel = new Vector3( Random.Range( -1.0f, 1.0f ), 0, Random.Range( -1.0f, 1.0f ) );
 			blockVel.Normalize();
 			if( posOriginal.x > 0 && blockVel.x > 0 ) blockVel.x = -blockVel.x;
