@@ -15,7 +15,7 @@ public class CameraScript : MonoBehaviour {
 		//Initiate starting position
 		x_pos = playerObj.transform.position.x;
 		z_pos = playerObj.transform.position.z - 5;
-		transform.position = new Vector3 (x_pos, playerObj.transform.position.y + 13, z_pos);
+		transform.position = new Vector3 (x_pos, playerObj.transform.position.y + 18, z_pos);
 		transform.LookAt (playerObj.transform.position);
 
 	
@@ -58,7 +58,7 @@ public class CameraScript : MonoBehaviour {
 		}
 		else
 		{
-			v = new Vector3 (x_pos + playerObj.transform.position.x, 33 + ((y-20)/4), z_pos + playerObj.transform.position.z);
+			v = new Vector3 (x_pos + playerObj.transform.position.x, 36 + ((y-20)/3), z_pos + playerObj.transform.position.z);
 			//v = new Vector3 (playerObj.transform.position.x,  y, playerObj.transform.position.z -5 );
 			transform.position = v;
 			transform.LookAt (playerObj.transform.position);

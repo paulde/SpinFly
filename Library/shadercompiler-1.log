@@ -1,8 +1,6 @@
 Base path: /Applications/Unity/Unity.app/Contents
 Pipe name: \\.\pipe\UnityShaderCompiler-1--1603952172
 Cmd: getPlatforms
-Cmd: preprocess
-  error: 1 plat 12 at (1392): Compiling shaders to OpenGL ES 2.0, Xbox 360, PS3, Flash or DX11 requires both vertex and fragment programs
-  insize=2112 outsize=2949 ok=1
-Cmd: preprocess
-  insize=2112 outsize=32094 ok=1
+End of pipe
+
+Quitting shader compiler process

@@ -12,7 +12,7 @@ public class BlockBehaviorScript : MonoBehaviour {
 	void Start () {
 		var trans = new Vector3 (5, 0, 1);
 		frameCounter = 0;
-		minPlatforms = 20;
+		minPlatforms = 30;
 		borderDistance = 30;
 		
 		float x = 0;

@@ -107,7 +107,7 @@ public class BlockScript : MonoBehaviour {
 		//renderer.material.color = new Color (f, f, f);
 
 		//renderer.material.shader = Shader.Find ("SciFi_Props-Pack03-diffuse");
-		renderer.material.SetColor ("_OutlineColor", new Color (f, f, f));
+		//renderer.material.SetColor ("_OutlineColor", new Color (f, f, f));
 
 
 		//var bone = this.transform.Find("Bonus");

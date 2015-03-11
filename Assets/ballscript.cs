@@ -81,6 +81,29 @@ public class ballscript : MonoBehaviour {
 				//transform.Rotate (0, 0, 5);
 			}
 		}
+		else if(controlType == 3) { // Version 2 Control
+			float forceFactor = 25 * rigidbody.mass;
+			if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W)) {
+				rigidbody.AddForce (0, 0, forceFactor);
+			}
+			if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S)) {
+				rigidbody.AddForce (0, 0, -forceFactor);
+			}
+			if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
+				rigidbody.AddForce (-forceFactor, 0, 0);
+			}
+			if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
+				rigidbody.AddForce (forceFactor, 0, 0);
+			}
+
+
+			float max_speed = 10;
+			if(rigidbody.velocity.magnitude > max_speed)
+         {
+                rigidbody.velocity = rigidbody.velocity.normalized * max_speed;
+         }
+		}
+
 
 
 
@@ -95,7 +118,7 @@ public class ballscript : MonoBehaviour {
 		//renderer.material.color = new Color (f, f, f);
 		
 		//renderer.material.shader = Shader.Find ("SciFi_Props-Pack03-diffuse");
-		renderer.material.SetColor ("_OutlineColor", new Color (f, f, f));
+		//renderer.material.SetColor ("_OutlineColor", new Color (f, f, f));
 		if (goalMet != true) {
 						time -= Time.fixedDeltaTime;
 				}
