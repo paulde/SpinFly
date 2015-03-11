@@ -56,7 +56,9 @@ public class BlockScript : MonoBehaviour {
 		}
 		if(isBonus == true && collisionInfo.gameObject.name == "Player"){
 			isBonus = false;
-			otherScript.score += 1;
+			if(otherScript.goalMet != true){
+				otherScript.score += 1;
+			}
 
 			
 			}
