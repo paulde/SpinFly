@@ -96,7 +96,6 @@ public class ballscript : MonoBehaviour {
 				rigidbody.AddForce (forceFactor, 0, 0);
 			}
 
-
 			float max_speed = 10;
 			if(rigidbody.velocity.magnitude > max_speed)
          {
@@ -104,8 +103,12 @@ public class ballscript : MonoBehaviour {
          }
 		}
 
-
-
+		if (Input.GetKey (KeyCode.U)) {
+			GameObject powerUP = (GameObject)Instantiate (Resources.Load ("PowerUp"),new Vector3(-4,12,10), Quaternion.identity);
+			powerUP.transform.Rotate( new Vector3(331.5f, 164.06f, 316.75f));
+		}
+		
+		
 
 		if (Input.GetKey(KeyCode.Space) && hasJump) {
 			hasJump = false;
