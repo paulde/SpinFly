@@ -14,7 +14,8 @@ public class ballscript : MonoBehaviour {
 	private int controlType;
 	public bool slow_isOn;
 	public bool net_isOn;
-	public float powerUp_time;
+	public float slow_timer;
+	public float net_timer;
 	public float POWERUP_DURATION = 10;
 
 	public GameObject block;
@@ -40,7 +41,8 @@ public class ballscript : MonoBehaviour {
 
 		slow_isOn = false;
 		net_isOn = false;
-		powerUp_time = POWERUP_DURATION;
+		slow_timer = POWERUP_DURATION;
+		net_timer = POWERUP_DURATION;
 	}
 	
 	// Update is called once per frame
@@ -141,10 +143,18 @@ public class ballscript : MonoBehaviour {
 			Application.LoadLevel (Application.loadedLevel);
 		}
 		if (slow_isOn == true) {
-			powerUp_time -= Time.fixedDeltaTime;
+			slow_timer -= Time.fixedDeltaTime;
 
-			if(powerUp_time <= 0){
+			if(slow_timer <= 0){
 				slow_isOn = false;
+			}
+		}
+		if (net_isOn == true) {
+			net_timer -= Time.fixedDeltaTime;
+			
+			if(net_timer <= 0){
+				net_isOn = false;
+				Destroy(GameObject.Find("Net"));
 			}
 		} 
 		if (score >= goal || Input.GetKey(KeyCode.H)) {
@@ -175,7 +185,17 @@ public class ballscript : MonoBehaviour {
 				if (collisionInfo.collider.tag == "PowerUp") {
 					rigidbody.velocity = new Vector3( rigidbody.velocity.x, 50, rigidbody.velocity.z );
 					slow_isOn = true;
-					powerUp_time = POWERUP_DURATION;
+					slow_timer = POWERUP_DURATION;
+				}
+
+				if (collisionInfo.collider.tag == "Net") {
+					rigidbody.velocity = new Vector3( rigidbody.velocity.x, 50, rigidbody.velocity.z );
+				}
+				if (collisionInfo.collider.tag == "Net_Power") {
+					rigidbody.velocity = new Vector3( rigidbody.velocity.x, 50, rigidbody.velocity.z );
+					net_isOn = true;
+					net_timer = POWERUP_DURATION;
+					Instantiate (Resources.Load ("Net"), new Vector3 (-0.7f, 3.4f, -0.4f), Quaternion.identity);
 				}
 
 
@@ -185,7 +205,11 @@ public class ballscript : MonoBehaviour {
 			}
 
 	}
-
+	void OnTriggerEnter(Collider other) {
+		if (other.tag == "Net") {
+			rigidbody.velocity = new Vector3( rigidbody.velocity.x, 50, rigidbody.velocity.z );
+		}
+	}
 	void OnCollisionStay(Collision collisionInfo)
 	{
 		Debug.Log ("HERE");
@@ -219,7 +243,7 @@ public class ballscript : MonoBehaviour {
 
 	void displayScore()
 	{
-		scoreText.text = "Time: " + time.ToString("0") + "\nGoal: " + score.ToString () + "/" + goal + "\n" + slow_isOn;
+		scoreText.text = "Time: " + time.ToString("0") + "\nGoal: " + score.ToString () + "/" + goal + "\n" + net_isOn;
 	}
 
 }
