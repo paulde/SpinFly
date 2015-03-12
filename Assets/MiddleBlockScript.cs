@@ -22,7 +22,7 @@ public class MiddleBlockScript : MonoBehaviour {
 		otherScript = player.GetComponent<ballscript> ();
 
 		up = new Vector3 (0, 50, 0);
-		Vector3 startPos = new Vector3 (0, -5, 0);
+		Vector3 startPos = new Vector3 (0, 10, 0);
 		transform.position = startPos;
 		//speed = Random.Range( 2, 6 );
 	}

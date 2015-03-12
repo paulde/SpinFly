@@ -34,7 +34,7 @@ public class ballscript : MonoBehaviour {
 		//otherScript = player.GetComponent<ballscript> ();
 
 		//yield return new WaitForSeconds (fadeTime);
-		controlType = 1;
+		controlType = 3;
 	}
 	
 	// Update is called once per frame
