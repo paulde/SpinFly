@@ -30,17 +30,20 @@ public class BlockTop_script : MonoBehaviour {
 		//renderer.enabled = false;
 	}
 
-	void OnCollisionEnter(Collision collisionInfo)
+	void OnTriggerEnter(Collider collisionInfo)
 	{
-		if(collisionInfo.gameObject.name == "Player")
+		Debug.Log ("Intersection");
+		Debug.Log (collisionInfo.tag);
+		if(collisionInfo.tag == "Player")
 		{
+			Debug.Log("Treu");
 			for(int i = 0; i < transform.childCount;i++)
 			{
 				transform.GetChild(i).gameObject.renderer.enabled = false;
 			}
 			
 		}
-		if(isBonus == true && collisionInfo.gameObject.name == "Player"){
+		if(isBonus == true && collisionInfo.tag == "Player"){
 			isBonus = false;
 			if(otherScript.goalMet != true){
 				otherScript.score += 1;
@@ -50,9 +53,9 @@ public class BlockTop_script : MonoBehaviour {
 		}
 		
 	}
-	void OnCollisionStay(Collision collisionInfo)
+	void OnTriggerStay(Collider collisionInfo)
 	{
-		if (collisionInfo.collider.tag == "Player") {
+		if (collisionInfo.tag == "Player") {
 			isBonus = false;
 		}
 	}

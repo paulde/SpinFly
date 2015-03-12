@@ -26,8 +26,7 @@ public class MiddleBlockScript : MonoBehaviour {
 		transform.position = startPos;
 
 	}
-	
-	//public void Create( Vector3 vel, 
+
 
 	void OnCollisionEnter(Collision collisionInfo)
 	{

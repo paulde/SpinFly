@@ -42,7 +42,7 @@ public class ballscript : MonoBehaviour {
 		slow_isOn = false;
 		net_isOn = false;
 		slow_timer = POWERUP_DURATION;
-		net_timer = POWERUP_DURATION;
+		net_timer = 0;
 	}
 	
 	// Update is called once per frame
@@ -193,9 +193,12 @@ public class ballscript : MonoBehaviour {
 				}
 				if (collisionInfo.collider.tag == "Net_Power") {
 					rigidbody.velocity = new Vector3( rigidbody.velocity.x, 50, rigidbody.velocity.z );
-					net_isOn = true;
-					net_timer = POWERUP_DURATION;
-					Instantiate (Resources.Load ("Net"), new Vector3 (-0.7f, 3.4f, -0.4f), Quaternion.identity);
+					if(net_timer <= 0)
+					{
+						net_isOn = true;
+						net_timer = POWERUP_DURATION;
+						Instantiate (Resources.Load ("Net"), new Vector3 (-0.7f, 3.4f, -0.4f), Quaternion.identity);
+					}
 				}
 
 
@@ -212,20 +215,25 @@ public class ballscript : MonoBehaviour {
 	}
 	void OnCollisionStay(Collision collisionInfo)
 	{
-		Debug.Log ("HERE");
-		Debug.Log (collisionInfo.collider.tag);
-		if (collisionInfo.collider.tag == "Block" ||
-		    collisionInfo.collider.tag == "BlockTop"){
+
+		if (collisionInfo.collider.tag == "Block"){
+			hasJump = true;
+		}
+
+	}
+	void OnTriggerStay(Collider collisionInfo) {
+
+		if (collisionInfo.tag == "BlockTop"){
 			hasJump = true;
 			
 		}
-		if (collisionInfo.collider.tag == "BlockTop" && 
+		if (collisionInfo.tag == "BlockTop" && 
 		    !(Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W) ||
 		  		Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S) ||
 		  		Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.A) ||
 		  		Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.D) ||
 		  		Input.GetKey (KeyCode.Space))) {
-
+			
 			rigidbody.velocity = new Vector3(0,rigidbody.velocity.y,0);
 			rigidbody.angularVelocity = Vector3.zero;
 			Vector3 vel =  collisionInfo.gameObject.GetComponent<BlockTop_script> ().vel;
@@ -233,12 +241,6 @@ public class ballscript : MonoBehaviour {
 			float speed = collisionInfo.gameObject.GetComponent<BlockTop_script> ().speed;
 			transform.Translate (vel / 60 * speed );
 		}
-		if (collisionInfo.collider.tag == "Block" ||
-		    collisionInfo.collider.tag == "BlockTop"){
-			hasJump = true;
-			
-		}
-
 	}
 
 	void displayScore()

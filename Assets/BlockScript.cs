@@ -55,6 +55,7 @@ public class BlockScript : MonoBehaviour {
 		if (otherScript.goalMet == true) 
 		{
 			speed = 0;
+			vel = Vector3.zero;
 		}else if (otherScript.slow_isOn == true) {
 			speed = 1;
 		} else {
