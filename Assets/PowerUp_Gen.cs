@@ -3,8 +3,8 @@ using System.Collections;
 
 public class PowerUp_Gen : MonoBehaviour {
 	public float timer;
-	public float TIME = 5f;
-	public float PROBABILITY = 10f;
+	public float TIME = 1f;
+	public float PROBABILITY = 50f;
 
 	// Use this for initialization
 	void Start () {

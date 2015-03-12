@@ -1,48 +1,44 @@
 Base path: C:/Program Files (x86)/Unity/Editor/Data
-Pipe name: \\.\pipe\UnityShaderCompiler-1-16084
+Pipe name: \\.\pipe\UnityShaderCompiler-1-21892
 Cmd: getPlatforms
 Cmd: preprocess
   error: 1 plat 12 at (1392): Compiling shaders to OpenGL ES 2.0, Xbox 360, PS3, Flash or DX11 requires both vertex and fragment programs
   insize=2225 outsize=2996 ok=1
 Cmd: compileSnippet
-  api=0 type=0 insize=4876 outsize=919 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+  api=1 type=0 insize=4876 outsize=595 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
 Cmd: compileSnippet
-  api=0 type=1 insize=4876 outsize=378 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+  api=1 type=1 insize=4876 outsize=285 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
 Cmd: compileSnippet
-  api=0 type=0 insize=2852 outsize=817 kw=POINT ok=1
+  api=1 type=0 insize=2852 outsize=383 kw=POINT ok=1
 Cmd: compileSnippet
-  api=0 type=1 insize=2852 outsize=561 kw=POINT ok=1
+  api=1 type=1 insize=2852 outsize=418 kw=POINT ok=1
 Cmd: compileSnippet
-  api=0 type=0 insize=2380 outsize=457 kw= ok=1
+  api=1 type=0 insize=2380 outsize=190 kw= ok=1
 Cmd: compileSnippet
-  api=0 type=1 insize=2380 outsize=159 kw= ok=1
+  api=1 type=1 insize=2380 outsize=118 kw= ok=1
 Cmd: compileSnippet
-  api=0 type=0 insize=4593 outsize=905 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF HDR_LIGHT_PREPASS_OFF ok=1
+  api=1 type=0 insize=4593 outsize=639 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF HDR_LIGHT_PREPASS_OFF ok=1
 Cmd: compileSnippet
-  api=0 type=1 insize=4593 outsize=350 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF HDR_LIGHT_PREPASS_OFF ok=1
+  api=1 type=1 insize=4593 outsize=235 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF HDR_LIGHT_PREPASS_OFF ok=1
 Cmd: compileSnippet
-  api=0 type=0 insize=936 outsize=635 kw= ok=1
+  api=1 type=0 insize=936 outsize=316 kw= ok=1
 Cmd: compileSnippet
-  api=0 type=1 insize=936 outsize=84 kw= ok=1
+  api=1 type=1 insize=936 outsize=29 kw= ok=1
 Cmd: compileSnippet
-  api=0 type=0 insize=4877 outsize=919 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+  api=1 type=0 insize=4877 outsize=595 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
 Cmd: compileSnippet
-  api=0 type=1 insize=4877 outsize=378 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+  api=1 type=1 insize=4877 outsize=285 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
 Cmd: compileSnippet
-  api=0 type=0 insize=2852 outsize=817 kw=POINT ok=1
+  api=1 type=0 insize=2852 outsize=383 kw=POINT ok=1
 Cmd: compileSnippet
-  api=0 type=1 insize=2852 outsize=561 kw=POINT ok=1
+  api=1 type=1 insize=2852 outsize=418 kw=POINT ok=1
 Cmd: compileSnippet
-  api=0 type=0 insize=2381 outsize=457 kw= ok=1
+  api=1 type=0 insize=2381 outsize=190 kw= ok=1
 Cmd: compileSnippet
-  api=0 type=1 insize=2381 outsize=159 kw= ok=1
+  api=1 type=1 insize=2381 outsize=118 kw= ok=1
 Cmd: compileSnippet
-  api=0 type=0 insize=4594 outsize=905 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF HDR_LIGHT_PREPASS_OFF ok=1
+  api=1 type=0 insize=4594 outsize=639 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF HDR_LIGHT_PREPASS_OFF ok=1
 Cmd: compileSnippet
-  api=0 type=1 insize=4594 outsize=350 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF HDR_LIGHT_PREPASS_OFF ok=1
+  api=1 type=1 insize=4594 outsize=235 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF HDR_LIGHT_PREPASS_OFF ok=1
 Cmd: compileSnippet
-  api=0 type=0 insize=911 outsize=635 kw= ok=1
-Unhandled exception: Readfile from pipe failed. GLE=The pipe has been ended.
-
-
-Quitting shader compiler process
+  api=1 type=0 insize=911 outsize=316 kw= ok=1
