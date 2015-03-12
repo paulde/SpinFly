@@ -37,12 +37,17 @@ public class ballscript : MonoBehaviour {
 		player = GameObject.Find("Player");
 		otherScript = player.GetComponent<ballscript> ();
 
+<<<<<<< HEAD
 		controlType = 3;
 
 		slow_isOn = false;
 		net_isOn = false;
 		slow_timer = POWERUP_DURATION;
 		net_timer = 0;
+=======
+		//yield return new WaitForSeconds (fadeTime);
+		controlType = 1;
+>>>>>>> parent of 3975bc4... Added new center block
 	}
 	
 	// Update is called once per frame

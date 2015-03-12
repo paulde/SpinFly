@@ -14,7 +14,7 @@ public class CameraScript : MonoBehaviour {
 
 		//Initiate starting position
 		x_pos = playerObj.transform.position.x;
-		z_pos = playerObj.transform.position.z - 8;
+		z_pos = playerObj.transform.position.z - 5;
 		transform.position = new Vector3 (x_pos, playerObj.transform.position.y + 18, z_pos);
 		transform.LookAt (playerObj.transform.position);
 
@@ -50,8 +50,13 @@ public class CameraScript : MonoBehaviour {
 		}
 		else
 		{
+<<<<<<< HEAD
 			v = new Vector3 (x_pos + playerObj.transform.position.x, 34 + ((y-20)/3), z_pos + playerObj.transform.position.z);
 	
+=======
+			v = new Vector3 (x_pos + playerObj.transform.position.x, 36 + ((y-20)/3), z_pos + playerObj.transform.position.z);
+			//v = new Vector3 (playerObj.transform.position.x,  y, playerObj.transform.position.z -5 );
+>>>>>>> parent of 3975bc4... Added new center block
 			transform.position = v;
 			transform.LookAt (playerObj.transform.position);
 		}
