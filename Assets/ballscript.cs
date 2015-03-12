@@ -12,6 +12,10 @@ public class ballscript : MonoBehaviour {
 	public GameObject player;
 	private ballscript otherScript;
 	private int controlType;
+	public bool slow_isOn;
+	public bool net_isOn;
+	public float powerUp_time;
+	public float POWERUP_DURATION = 10;
 
 	public GameObject block;
 	private BlockTop_script top;
@@ -33,6 +37,10 @@ public class ballscript : MonoBehaviour {
 		otherScript = player.GetComponent<ballscript> ();
 
 		controlType = 3;
+
+		slow_isOn = false;
+		net_isOn = false;
+		powerUp_time = POWERUP_DURATION;
 	}
 	
 	// Update is called once per frame
@@ -128,11 +136,17 @@ public class ballscript : MonoBehaviour {
 
 		if (goalMet != true) {
 						time -= Time.fixedDeltaTime;
-				}
+		}
 		if (time <= 0) {
 			Application.LoadLevel (Application.loadedLevel);
 		}
+		if (slow_isOn == true) {
+			powerUp_time -= Time.fixedDeltaTime;
 
+			if(powerUp_time <= 0){
+				slow_isOn = false;
+			}
+		} 
 		if (score >= goal || Input.GetKey(KeyCode.H)) {
 			goalMet = true;
 		}
@@ -160,6 +174,8 @@ public class ballscript : MonoBehaviour {
 				//Allows players recovery
 				if (collisionInfo.collider.tag == "PowerUp") {
 					rigidbody.velocity = new Vector3( rigidbody.velocity.x, 50, rigidbody.velocity.z );
+					slow_isOn = true;
+					powerUp_time = POWERUP_DURATION;
 				}
 
 
@@ -203,7 +219,7 @@ public class ballscript : MonoBehaviour {
 
 	void displayScore()
 	{
-		scoreText.text = "Time: " + time.ToString("0") + "\nGoal: " + score.ToString () + "/" + goal;
+		scoreText.text = "Time: " + time.ToString("0") + "\nGoal: " + score.ToString () + "/" + goal + "\n" + slow_isOn;
 	}
 
 }

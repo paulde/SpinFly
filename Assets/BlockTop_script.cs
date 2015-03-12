@@ -59,6 +59,13 @@ public class BlockTop_script : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(otherScript.goalMet == true)
+		{
+			for(int i = 0; i < transform.childCount;i++)
+			{
+				transform.GetChild(i).gameObject.renderer.enabled = false;
+			}
+			
+		}
 	}
 }

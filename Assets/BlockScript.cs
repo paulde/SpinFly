@@ -5,13 +5,19 @@ public class BlockScript : MonoBehaviour {
 
 	public Vector3 vel;
 	public float speed;
+	public float original_speed;
 
 	public GameObject player;
 	private ballscript otherScript;
+
 	// Use this for initialization
 	void Start () {
 
 		speed = Random.Range( 2, 5 );
+		original_speed = speed;
+
+		player = GameObject.Find("Player");
+		otherScript = player.GetComponent<ballscript> ();
 		
 	}
 
@@ -46,6 +52,14 @@ public class BlockScript : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		float f = (transform.position.y) / 4;
+		if (otherScript.goalMet == true) 
+		{
+			speed = 0;
+		}else if (otherScript.slow_isOn == true) {
+			speed = 1;
+		} else {
+			speed = original_speed;
+		}
 
 		transform.Translate (vel / 60 * speed );
 
