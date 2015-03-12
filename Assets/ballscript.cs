@@ -172,6 +172,12 @@ public class ballscript : MonoBehaviour {
 					//print ( "item!!!" );
 					//Destroy( collisionInfo.collider );
 				}
+
+				//Allows players recovery
+				if (collisionInfo.collider.name == "PowerUp") {
+					rigidbody.velocity = new Vector3( rigidbody.velocity.x, 25, rigidbody.velocity.z );
+				}
+
 		//if (collisionInfo.collider.tag == "Bonus")
 		//{
 			//score++;
