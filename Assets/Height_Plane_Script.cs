@@ -45,7 +45,7 @@ public class Height_Plane_Script : MonoBehaviour {
 
 	       		//add change ot color to the detection squares
 	       		float height_color = Mathf.Abs(player.transform.position.y - (go.transform.position.y + 15f));
-	      		print(height_color);
+	      		//print(height_color);
 	       		highlight.renderer.material.color = new Color (1, 0, 0);
        		}
        		

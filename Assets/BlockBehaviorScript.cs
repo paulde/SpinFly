@@ -32,11 +32,10 @@ public class BlockBehaviorScript : MonoBehaviour {
 				((BlockScript)gb.GetComponent( "BlockScript" )).SetVelocity( new Vector3( Random.Range( -1.0f, 1.0f ), 0, Random.Range( -1.0f, 1.0f ) ) );
 			var scale = new Vector3( Random.Range( -.5f, 3.0f ), 0, Random.Range( -.5f, 3.0f ) );
 			
-			//gb.transform.GetComponent<BlockScript>().SetItem(); 
+
 				gb.transform.localScale += scale;
 			
-			//		gb.rigidbody.velocity = vel;
-			//print ( gb.rigidbody.velocity.x + ", " + gb.rigidbody.velocity.y + ", " + gb.rigidbody.velocity.z );
+
 			frameCounter = 0;
 		}
 		
@@ -62,24 +61,11 @@ public class BlockBehaviorScript : MonoBehaviour {
 		for( int i = 0; i < deleteCount; ++i )
 		{
 			deleteCount = 0;
-			//var x = Random.Range( -15, 15 );
-			//var z = Random.Range( -15, 15 );
+
 			float x = 0; 
 			float z = 0;
 			
-			
-			
-			
-			/*
-			bool hasItem = false;
-			if( Random.Range( 0, 5 ) == 0 )
-			{
-				hasItem = true;
-			}*/
-			
-			
-			
-			
+
 			float startDist = 30;
 			if( Random.Range( 0, 1 ) == 0 )
 			{
@@ -94,13 +80,9 @@ public class BlockBehaviorScript : MonoBehaviour {
 			
 			var angle = Random.Range (0, Mathf.PI * 2 - .01f);
 			var start = 30;
-			//var startVel = .01f;
+		
 			var posOriginal = new Vector3 (Mathf.Cos (angle) * start, Random.Range( 3.0f, 9.0f ) , Mathf.Sin (angle) * start);
-			// new Vector3( x, 0, z );
-			//var vel = new Vector3 (-Mathf.Cos (angle) * start, 0, -Mathf.Sin (angle) * start);
-			//pos.x *= 10;
-			//pox.y *= 10;
-			
+
 			var rot = Quaternion.Euler( 0, Random.Range( 0.0f, 90.0f ), 0 );
 			gb = (GameObject)Instantiate (Resources.Load ("pillar_prefab"), posOriginal, Quaternion.identity);
 			Vector3 blockVel = new Vector3( Random.Range( -1.0f, 1.0f ), 0, Random.Range( -1.0f, 1.0f ) );
@@ -115,17 +97,14 @@ public class BlockBehaviorScript : MonoBehaviour {
 			}
 			((BlockScript)gb.GetComponent( "BlockScript" )).SetVelocity( blockVel );
 			var scale = new Vector3( Random.Range( -.5f, 3.0f ), 0, Random.Range( -.5f, 3.0f ) );
-			
-			//gb.transform.GetComponent<BlockScript>().SetItem(); 
+
 			gb.transform.localScale += scale;
 			
-			//		gb.rigidbody.velocity = vel;
-			//print ( gb.rigidbody.velocity.x + ", " + gb.rigidbody.velocity.y + ", " + gb.rigidbody.velocity.z );
+	
 			
 		} 
 
 		
-		//gb.transform.Translate (-1 / 60.0f, 0, 0);
-		//(gb.GetComponent<BlockScript> () as BlockScript).Blah ();
+
 	}
 }
