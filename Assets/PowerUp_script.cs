@@ -24,8 +24,6 @@ public class PowerUp_script : MonoBehaviour {
 			Destroy(gameObject);
 		}
 
-		//this.renderer.material.color.a = 0.01f;
-
 	}
 	// Update is called once per frame
 	void Update () {

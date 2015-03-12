@@ -14,7 +14,7 @@ public class CameraScript : MonoBehaviour {
 
 		//Initiate starting position
 		x_pos = playerObj.transform.position.x;
-		z_pos = playerObj.transform.position.z - 5;
+		z_pos = playerObj.transform.position.z - 8;
 		transform.position = new Vector3 (x_pos, playerObj.transform.position.y + 18, z_pos);
 		transform.LookAt (playerObj.transform.position);
 
@@ -24,16 +24,8 @@ public class CameraScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		//var v = new Vector3( 0, 
 
-		//var v = new Vector3 (playerObj.transform.position.x + playerObj.rigidbody.velocity.x, transform.position.y, playerObj.transform.position.z 
-		 //                    + playerObj.rigidbody.velocity.z );
-
-	//	var v = new Vector3 (playerObj.transform.position.x, transform.position.y, playerObj.transform.position.z - 5 );
 		var y = playerObj.transform.position.y + 13;
-		//if( y < 20 )
-	//		y = 20;
-
 
 		if (Input.GetKey (KeyCode.Q)) {
 			transform.RotateAround(playerObj.transform.position,Vector3.up, 40* Time.deltaTime);
@@ -58,15 +50,12 @@ public class CameraScript : MonoBehaviour {
 		}
 		else
 		{
-			v = new Vector3 (x_pos + playerObj.transform.position.x, 36 + ((y-20)/3), z_pos + playerObj.transform.position.z);
-			//v = new Vector3 (playerObj.transform.position.x,  y, playerObj.transform.position.z -5 );
+			v = new Vector3 (x_pos + playerObj.transform.position.x, 34 + ((y-20)/3), z_pos + playerObj.transform.position.z);
+	
 			transform.position = v;
 			transform.LookAt (playerObj.transform.position);
 		}
 
-		            	//;
-
-			//transform.position.z = ;
 	}
 
 	private bool revertFogState = true;

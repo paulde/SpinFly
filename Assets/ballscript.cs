@@ -12,36 +12,42 @@ public class ballscript : MonoBehaviour {
 	public GameObject player;
 	private ballscript otherScript;
 	private int controlType;
+	public bool slow_isOn;
+	public bool net_isOn;
+	public float slow_timer;
+	public float net_timer;
+	public float POWERUP_DURATION = 10;
+
+	public GameObject block;
+	private BlockTop_script top;
+
 	// Use this for initialization
 	void Start () {
 		hasJump = true;
 		score = 0;
 		displayScore ();
-		//print ("ball start: " + rigidbody.transform.position.x + ", " + rigidbody.transform.position.y + ", " 
-		 //      + rigidbody.transform.position.z);
+
 		time = 60;
 		Physics.gravity = new Vector3 (0, -20, 0);
 		goalMet = false;
 		goal = 3;
-		//GameObject.Find ("Fader").GetComponent<Fade> ().FadetoBlack ();
-		//yield return new WaitForSeconds (fadeTime);
-		//test ();
-		//testfunction ();
+
 		GameObject.Find ("Fader").GetComponent<Fade> ().FadeIn ();
 
 		player = GameObject.Find("Player");
 		otherScript = player.GetComponent<ballscript> ();
-		//otherScript = player.GetComponent<ballscript> ();
 
-		//yield return new WaitForSeconds (fadeTime);
-		controlType = 1;
+		controlType = 3;
+
+		slow_isOn = false;
+		net_isOn = false;
+		slow_timer = POWERUP_DURATION;
+		net_timer = 0;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
-		//print ("ball vel: " + rigidbody.transform.position.x + ", " + rigidbody.transform.position.y + ", " 
-						//+ rigidbody.transform.position.z);
 
 		if (Input.GetKey (KeyCode.Alpha1)) {
 			controlType = 1;
@@ -70,7 +76,7 @@ public class ballscript : MonoBehaviour {
 			if (Input.GetKey(KeyCode.Space) && hasJump) {
 			hasJump = false;
 			rigidbody.velocity = new Vector3( rigidbody.velocity.x, 7, rigidbody.velocity.z );
-			//rigidbody.AddExplosionForce(, );
+		
 				}
 		} else if(controlType == 2) { // Version 2 Control
 			if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W)) {
@@ -90,7 +96,7 @@ public class ballscript : MonoBehaviour {
 			if (Input.GetKey(KeyCode.Space) && hasJump) {
 			hasJump = false;
 			rigidbody.velocity = new Vector3( rigidbody.velocity.x, 7, rigidbody.velocity.z );
-			//rigidbody.AddExplosionForce(, );
+			
 				}
 		}
 		else if(controlType == 3) { // Version 2 Control
@@ -114,7 +120,7 @@ public class ballscript : MonoBehaviour {
 			if (Input.GetKey(KeyCode.Space) && hasJump) {
 			hasJump = false;
 			rigidbody.velocity = new Vector3( rigidbody.velocity.x, 20, rigidbody.velocity.z );
-			//rigidbody.AddExplosionForce(, );
+			
 				}
 
 
@@ -124,28 +130,33 @@ public class ballscript : MonoBehaviour {
                 rigidbody.velocity = rigidbody.velocity.normalized * max_speed;
          	}
 		}
-
-		if (Input.GetKey (KeyCode.U)) {
-			GameObject powerUP = (GameObject)Instantiate (Resources.Load ("PowerUp"),new Vector3(-4,12,10), Quaternion.identity);
-			powerUP.transform.Rotate( new Vector3(331.5f, 164.06f, 316.75f));
-		}
-		
 		
 
 		displayScore ();
 
 		float f = (transform.position.y) / 25;
-		//renderer.material.color = new Color (f, f, f);
-		
-		//renderer.material.shader = Shader.Find ("SciFi_Props-Pack03-diffuse");
-		//renderer.material.SetColor ("_OutlineColor", new Color (f, f, f));
+
 		if (goalMet != true) {
 						time -= Time.fixedDeltaTime;
-				}
+		}
 		if (time <= 0) {
 			Application.LoadLevel (Application.loadedLevel);
 		}
+		if (slow_isOn == true) {
+			slow_timer -= Time.fixedDeltaTime;
 
+			if(slow_timer <= 0){
+				slow_isOn = false;
+			}
+		}
+		if (net_isOn == true) {
+			net_timer -= Time.fixedDeltaTime;
+			
+			if(net_timer <= 0){
+				net_isOn = false;
+				Destroy(GameObject.Find("Net"));
+			}
+		} 
 		if (score >= goal || Input.GetKey(KeyCode.H)) {
 			goalMet = true;
 		}
@@ -162,46 +173,79 @@ public class ballscript : MonoBehaviour {
 		if (collisionInfo.collider.tag == "Block") {//&& collisionInfo.contacts [0].normal.y > .99) {
 						hasJump = true;
 			
-						//print ("has jump");
+						
 				} else if (collisionInfo.collider.tag == "Ground") {
 						float fadeTime = GameObject.Find ("Player").GetComponent<Fade>().BeginFade(1);
 						yield return new WaitForSeconds(fadeTime);
 						Application.LoadLevel (Application.loadedLevel);
 						print ("Resetting");
-				} else if (collisionInfo.collider.tag == "Item") {
-					//print ( "item!!!" );
-					//Destroy( collisionInfo.collider );
 				}
-		//if (collisionInfo.collider.tag == "Bonus")
-		//{
-			//score++;
-		//}
-		if (collisionInfo.collider.tag == "Ground")
-		{
-			score = 0;
+
+				//Allows players recovery
+				if (collisionInfo.collider.tag == "PowerUp") {
+					rigidbody.velocity = new Vector3( rigidbody.velocity.x, 50, rigidbody.velocity.z );
+					slow_isOn = true;
+					slow_timer = POWERUP_DURATION;
+				}
+
+				if (collisionInfo.collider.tag == "Net") {
+					rigidbody.velocity = new Vector3( rigidbody.velocity.x, 50, rigidbody.velocity.z );
+				}
+				if (collisionInfo.collider.tag == "Net_Power") {
+					rigidbody.velocity = new Vector3( rigidbody.velocity.x, 50, rigidbody.velocity.z );
+					if(net_timer <= 0)
+					{
+						net_isOn = true;
+						net_timer = POWERUP_DURATION;
+						Instantiate (Resources.Load ("Net"), new Vector3 (-0.7f, 3.4f, -0.4f), Quaternion.identity);
+					}
+				}
+
+
+			if (collisionInfo.collider.tag == "Ground")
+			{
+				score = 0;
+			}
+
+	}
+	void OnTriggerEnter(Collider other) {
+		if (other.tag == "Net") {
+			rigidbody.velocity = new Vector3( rigidbody.velocity.x, 50, rigidbody.velocity.z );
+		}
+	}
+	void OnCollisionStay(Collision collisionInfo)
+	{
+
+		if (collisionInfo.collider.tag == "Block"){
+			hasJump = true;
 		}
 
 	}
+	void OnTriggerStay(Collider collisionInfo) {
 
-	void OnCollisionStay(Collision collisionInfo)
-	{
-		if (collisionInfo.collider.tag == "Block" ){//&& collisionInfo.contacts [0].normal.y > .99) {
+		if (collisionInfo.tag == "BlockTop"){
 			hasJump = true;
 			
-			//print ("has jump");
-		} 
+		}
+		if (collisionInfo.tag == "BlockTop" && 
+		    !(Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W) ||
+		  		Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S) ||
+		  		Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.A) ||
+		  		Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.D) ||
+		  		Input.GetKey (KeyCode.Space))) {
+			
+			rigidbody.velocity = new Vector3(0,rigidbody.velocity.y,0);
+			rigidbody.angularVelocity = Vector3.zero;
+			Vector3 vel =  collisionInfo.gameObject.GetComponent<BlockTop_script> ().vel;
+			vel.y = rigidbody.velocity.y;
+			float speed = collisionInfo.gameObject.GetComponent<BlockTop_script> ().speed;
+			transform.Translate (vel / 60 * speed );
+		}
 	}
 
 	void displayScore()
 	{
-		scoreText.text = "Time: " + time.ToString("0") + "\nGoal: " + score.ToString () + "/" + goal;
+		scoreText.text = "Time: " + time.ToString("0") + "\nGoal: " + score.ToString () + "/" + goal + "\n" + net_isOn;
 	}
-	/*IEnumerator testfunction() 
-	{
-		float fadeTime = GameObject.Find ("Fader").GetComponent<Fade> ().BeginFade (-1);
-		yield return new WaitForSeconds(fadeTime);
-	}*/
 
-
-	
 }

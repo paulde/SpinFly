@@ -21,7 +21,6 @@ public class minimap_script : MonoBehaviour {
 			} else {
 				camera.depth = -2;
 			}
-			Debug.Log(toggle);
 		}
 
 	}
