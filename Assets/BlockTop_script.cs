@@ -32,11 +32,8 @@ public class BlockTop_script : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collisionInfo)
 	{
-		Debug.Log ("Intersection");
-		Debug.Log (collisionInfo.tag);
 		if(collisionInfo.tag == "Player")
 		{
-			Debug.Log("Treu");
 			for(int i = 0; i < transform.childCount;i++)
 			{
 				transform.GetChild(i).gameObject.renderer.enabled = false;

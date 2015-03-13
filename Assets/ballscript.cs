@@ -236,16 +236,22 @@ public class ballscript : MonoBehaviour {
 			
 			rigidbody.velocity = new Vector3(0,rigidbody.velocity.y,0);
 			rigidbody.angularVelocity = Vector3.zero;
-			Vector3 vel =  collisionInfo.gameObject.GetComponent<BlockTop_script> ().vel;
-			vel.y = rigidbody.velocity.y;
-			float speed = collisionInfo.gameObject.GetComponent<BlockTop_script> ().speed;
+			Vector3 vel = new Vector3();
+			float speed = 0;
+			if(goalMet != true)
+			{
+				vel =  collisionInfo.gameObject.GetComponent<BlockTop_script> ().vel;
+				vel.y = rigidbody.velocity.y;
+				speed = collisionInfo.gameObject.GetComponent<BlockTop_script> ().speed;
+			}
+			vel.y = 0f;
 			transform.Translate (vel / 60 * speed );
 		}
 	}
 
 	void displayScore()
 	{
-		scoreText.text = "Time: " + time.ToString("0") + "\nGoal: " + score.ToString () + "/" + goal + "\n" + net_isOn;
+		scoreText.text = "Time: " + time.ToString("0") + "\nGoal: " + score.ToString () + "/" + goal + "\n";
 	}
 
 }
